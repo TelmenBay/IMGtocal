@@ -36,3 +36,96 @@
     transform: rotate(360deg);
   }
 }
+
+/* DateTimePicker custom styles */
+.react-datetime-picker {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.react-datetime-picker__wrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  border: none;
+  padding: 0;
+}
+
+.react-datetime-picker__inputGroup {
+  padding: 0 8px;
+}
+
+.react-datetime-picker__inputGroup__input {
+  font-size: 16px;
+  padding: 4px;
+}
+
+.react-datetime-picker__button {
+  padding: 4px 8px;
+}
+
+.react-datetime-picker__button:enabled:hover {
+  background-color: #f0f0f0;
+}
+
+/* Calendar popup styles */
+.react-calendar {
+  width: 350px;
+  max-width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.125em;
+}
+
+.react-calendar__tile {
+  padding: 10px 6.6667px;
+  background: none;
+  text-align: center;
+  line-height: 16px;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #e6e6e6;
+  border-radius: 4px;
+}
+
+.react-calendar__tile--now {
+  background: #ffff76;
+  border-radius: 4px;
+}
+
+.react-calendar__tile--active {
+  background: #006edc;
+  color: white;
+  border-radius: 4px;
+}
+
+/* Clock styles */
+.react-clock {
+  width: 200px;
+  height: 200px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.react-clock__face {
+  border: 1px solid #ccc;
+}
+
+.react-clock__hand {
+  background: #006edc;
+}
+
+.react-clock__mark {
+  background: #ccc;
+}
