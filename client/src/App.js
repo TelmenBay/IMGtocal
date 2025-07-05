@@ -1,22 +1,13 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth-helpers-react';
-import DateTimePicker from 'react-datetime-picker';
-import { useState } from 'react';
-import 'react-datetime-picker/dist/DateTimePicker.css';
-import 'react-calendar/dist/Calendar.css';
-import 'react-clock/dist/Clock.css';
-
+import ManualInput from './components/ManualInput';
+import ImageUpload from './components/ImageUpload';
 
 function App() {
-  const [ start, setStart] = useState(new Date());
-  const [ end, setEnd] = useState(new Date());
-  const [ eventName, setEventName] = useState("");
-  const [ eventDescription, setEventDescription] = useState("");
-
-
-  const session = useSession(); // tokens, when session exists then we have a user
-  const supabase = useSupabaseClient(); // talk to supabase
+  const [view, setView] = useState('manual'); // 'manual' or 'upload'
+  const session = useSession();
+  const supabase = useSupabaseClient();
   const { isLoading } = useSessionContext();
 
   if (isLoading) {
@@ -27,77 +18,79 @@ function App() {
     const {error} = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        scopes: 'https://www.googleapis.com/auth/calendar'
+        scopes: 'https://www.googleapis.com/auth/calendar',
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent'
+        }
       }
     });
     if (error) {
       alert("error signing in");
       console.log(error);
     }
-  };
-  
+  }
 
   async function signOut() {
     await supabase.auth.signOut();
   }
 
-  async function createEvent() {
-    
-    const event = {
-      'summary': eventName,
-      'description': eventDescription,
-      'start': {
-        'dateTime': start.toISOString(),
-        'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
-      },
-      'end': {
-        'dateTime': end.toISOString(),
-        'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
-      },
-    }
-      await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + session.provider_token // google token
-        },
-        body: JSON.stringify(event)
-      }).then((data) => {
-        return data.json();
-      }).then((data) => {
-        console.log(data);
-        alert("Event created successfully");
-      })
-      
-    
+  if (!session) {
+    return (
+      <div className="App">
+        <div style={{ width: '400px', margin: '30px auto'}}>
+          <button onClick={() => googleSignIn()}>Sign in with Google</button>
+        </div>
+      </div>
+    );
   }
-
-  console.log(session);
-  console.log(start);
 
   return (
     <div className="App">
-      <div style={{ width: '400px', margin: '30px auto'}}>
-        {session ? 
-          <>
-            <h2>Hello {session.user.email}</h2>
-            <p>Start of your event</p>
-            <DateTimePicker onChange={setStart} value={start}/>
-            <p>End of your event</p>
-            <DateTimePicker onChange={setEnd} value={end}/>
-            <p>Name of your event</p>
-            <input type='text' onChange={(e) => setEventName(e.target.value)}/>
-            <p>Description of your event</p>
-            <input type='text' onChange={(e) => setEventDescription(e.target.value)}/>
-            <hr/>
-            <button onClick={() => createEvent()}>Create Event</button>
-            <br/><br/>
-            <button onClick={() => signOut()}>Sign Out</button>
-          </>
-          :
-          <>
-            <button onClick={() => googleSignIn()}>Sign in with Google</button>
-          </>
-        }
+      <div style={{ width: '600px', margin: '30px auto'}}>
+        <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+          <button
+            onClick={() => setView('manual')}
+            style={{
+              backgroundColor: view === 'manual' ? '#4CAF50' : '#f0f0f0',
+              color: view === 'manual' ? 'white' : 'black',
+              padding: '10px 20px',
+              margin: '0 10px',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer'
+            }}
+          >
+            Manual Input
+          </button>
+          <button
+            onClick={() => setView('upload')}
+            style={{
+              backgroundColor: view === 'upload' ? '#4CAF50' : '#f0f0f0',
+              color: view === 'upload' ? 'white' : 'black',
+              padding: '10px 20px',
+              margin: '0 10px',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer'
+            }}
+          >
+            Upload Image
+          </button>
+        </div>
+
+        {view === 'manual' ? (
+          <ManualInput
+            session={session}
+            supabase={supabase}
+            onSignOut={signOut}
+          />
+        ) : (
+          <ImageUpload
+            session={session}
+            onSignOut={signOut}
+          />
+        )}
       </div>
     </div>
   );
