@@ -6,6 +6,9 @@ A web application that extracts text from images using OCR technology and conver
 
 IMGtoCal simplifies the process of digitizing event information from physical documents, screenshots, or images. Upload an image containing event details, and the application will automatically extract the text, identify event information, and optionally push the events directly to your Google Calendar.
 
+<img width="1706" height="959" alt="Screenshot 2025-11-12 at 11 02 51 PM" src="https://github.com/user-attachments/assets/119cc5c4-6d25-4d92-8af6-ce374e937db3" />
+
+
 ## The Problem
 
 Event information often comes in various formats: posters, flyers, screenshots, or printed schedules. Manually transcribing this information into your calendar is time-consuming and error-prone. IMGtoCal automates this process by combining optical character recognition (OCR) with AI-powered event parsing to streamline event creation.
