@@ -1,51 +1,159 @@
 .App {
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.app-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.app-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.app-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #a0a0a0;
+  margin-bottom: 30px;
+}
+
+.tab-container {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.tab-button {
+  background: transparent;
+  color: #a0a0a0;
+  padding: 12px 28px;
+  border: 1px solid #404040;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.tab-button:hover {
+  background: #2d2d2d;
+  border-color: #505050;
+}
+
+.tab-button.active {
+  background: #ffffff;
+  color: #1a1a1a;
+  border-color: #ffffff;
+}
+
+.sign-in-container {
+  max-width: 440px;
+  margin: 80px auto;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sign-in-box {
+  background: #242424;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  padding: 60px 40px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sign-in-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 12px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.sign-in-description {
+  font-size: 15px;
+  color: #a0a0a0;
+  margin-bottom: 32px;
+  line-height: 1.5;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-primary {
+  background: #ffffff;
+  color: #1a1a1a;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  width: 100%;
+  letter-spacing: 0.3px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-primary:hover {
+  background: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  padding: 12px 28px;
+  border: 1px solid #404040;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.btn-secondary:hover {
+  background: #2d2d2d;
+  border-color: #505050;
+}
+
+.btn-danger {
+  background: transparent;
+  color: #ff5252;
+  padding: 10px 24px;
+  border: 1px solid #ff5252;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.btn-danger:hover {
+  background: rgba(255, 82, 82, 0.1);
 }
 
 /* DateTimePicker custom styles */
 .react-datetime-picker {
-  background-color: white;
-  border: 1px solid #ccc;
+  background-color: #2d2d2d;
+  border: 1px solid #404040;
   border-radius: 4px;
-  padding: 8px;
-  font-size: 16px;
+  padding: 10px;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
   width: 100%;
-  max-width: 300px;
+  color: #e0e0e0;
 }
 
 .react-datetime-picker__wrapper {
@@ -54,78 +162,117 @@
   flex-shrink: 0;
   border: none;
   padding: 0;
+  color: #e0e0e0;
 }
 
 .react-datetime-picker__inputGroup {
   padding: 0 8px;
+  color: #e0e0e0;
 }
 
 .react-datetime-picker__inputGroup__input {
-  font-size: 16px;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
   padding: 4px;
+  color: #e0e0e0;
+  background: transparent;
 }
 
 .react-datetime-picker__button {
   padding: 4px 8px;
+  color: #e0e0e0;
 }
 
 .react-datetime-picker__button:enabled:hover {
-  background-color: #f0f0f0;
+  background-color: #3a3a3a;
+}
+
+.react-datetime-picker__button svg {
+  stroke: #e0e0e0;
 }
 
 /* Calendar popup styles */
 .react-calendar {
   width: 350px;
   max-width: 100%;
-  background: white;
-  border: 1px solid #ccc;
+  background: #242424;
+  border: 1px solid #404040;
   border-radius: 4px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Jost', sans-serif;
   line-height: 1.125em;
+  color: #e0e0e0;
+  padding: 12px;
+}
+
+.react-calendar__navigation button {
+  color: #e0e0e0;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: #3a3a3a;
+}
+
+.react-calendar__month-view__weekdays {
+  color: #a0a0a0;
+  font-weight: 500;
+  font-size: 13px;
 }
 
 .react-calendar__tile {
-  padding: 10px 6.6667px;
+  padding: 12px 6.6667px;
   background: none;
   text-align: center;
   line-height: 16px;
+  color: #e0e0e0;
+  font-family: 'Jost', sans-serif;
 }
 
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
-  background-color: #e6e6e6;
+  background-color: #3a3a3a;
   border-radius: 4px;
 }
 
 .react-calendar__tile--now {
-  background: #ffff76;
+  background: #404040;
   border-radius: 4px;
+  color: #ffffff;
 }
 
 .react-calendar__tile--active {
-  background: #006edc;
-  color: white;
+  background: #ffffff;
+  color: #1a1a1a;
   border-radius: 4px;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: #f0f0f0;
+  color: #1a1a1a;
 }
 
 /* Clock styles */
 .react-clock {
   width: 200px;
   height: 200px;
-  background: white;
-  border: 1px solid #ccc;
+  background: #242424;
+  border: 1px solid #404040;
   border-radius: 50%;
   padding: 10px;
 }
 
 .react-clock__face {
-  border: 1px solid #ccc;
+  border: 1px solid #404040;
 }
 
 .react-clock__hand {
-  background: #006edc;
+  background: #ffffff;
 }
 
 .react-clock__mark {
-  background: #ccc;
+  background: #606060;
 }

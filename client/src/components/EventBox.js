@@ -77,61 +77,140 @@ function EventBox({ event, onUpdate, onPushToCalendar, session }) {
 
   return (
     <div style={{
-      border: '1px solid #ccc',
+      border: '1px solid #3a3a3a',
       borderRadius: '4px',
-      padding: '15px',
-      margin: '10px 0',
-      backgroundColor: '#f9f9f9'
+      padding: '24px',
+      marginBottom: '16px',
+      backgroundColor: '#242424'
     }}>
-      <div style={{ marginBottom: '10px' }}>
-        <label>Event Name:</label>
+      <div style={{ marginBottom: '20px' }}>
+        <label style={{
+          display: 'block',
+          marginBottom: '8px',
+          fontSize: '13px',
+          fontWeight: '500',
+          color: '#a0a0a0',
+          letterSpacing: '0.3px'
+        }}>
+          Event Name
+        </label>
         <input
           type="text"
           value={eventName}
           onChange={(e) => setEventName(e.target.value)}
-          onBlur={handleUpdate}
-          style={{ width: '100%', padding: '5px' }}
+          style={{
+            width: '100%',
+            padding: '12px',
+            background: '#1a1a1a',
+            border: '1px solid #2d2d2d',
+            borderRadius: '4px',
+            color: '#e0e0e0',
+            fontFamily: 'Jost, sans-serif',
+            fontSize: '14px',
+            outline: 'none',
+            transition: 'border-color 0.2s ease'
+          }}
+          onFocus={(e) => e.target.style.borderColor = '#505050'}
+          onBlur={(e) => { handleUpdate(); e.target.style.borderColor = '#2d2d2d'; }}
         />
       </div>
       
-      <div style={{ marginBottom: '10px' }}>
-        <label>Description:</label>
+      <div style={{ marginBottom: '20px' }}>
+        <label style={{
+          display: 'block',
+          marginBottom: '8px',
+          fontSize: '13px',
+          fontWeight: '500',
+          color: '#a0a0a0',
+          letterSpacing: '0.3px'
+        }}>
+          Description
+        </label>
         <input
           type="text"
           value={eventDescription}
           onChange={(e) => setEventDescription(e.target.value)}
-          onBlur={handleUpdate}
-          style={{ width: '100%', padding: '5px' }}
+          style={{
+            width: '100%',
+            padding: '12px',
+            background: '#1a1a1a',
+            border: '1px solid #2d2d2d',
+            borderRadius: '4px',
+            color: '#e0e0e0',
+            fontFamily: 'Jost, sans-serif',
+            fontSize: '14px',
+            outline: 'none',
+            transition: 'border-color 0.2s ease'
+          }}
+          onFocus={(e) => e.target.style.borderColor = '#505050'}
+          onBlur={(e) => { handleUpdate(); e.target.style.borderColor = '#2d2d2d'; }}
         />
       </div>
 
-      <div style={{ marginBottom: '10px' }}>
-        <label>Start Time:</label>
-        <DateTimePicker
-          onChange={setStart}
-          value={start}
-          onBlur={handleUpdate}
-        />
-      </div>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '16px',
+        marginBottom: '20px'
+      }}>
+        <div>
+          <label style={{
+            display: 'block',
+            marginBottom: '8px',
+            fontSize: '13px',
+            fontWeight: '500',
+            color: '#a0a0a0',
+            letterSpacing: '0.3px'
+          }}>
+            Start Time
+          </label>
+          <DateTimePicker
+            onChange={setStart}
+            value={start}
+          />
+        </div>
 
-      <div style={{ marginBottom: '10px' }}>
-        <label>End Time:</label>
-        <DateTimePicker
-          onChange={setEnd}
-          value={end}
-          onBlur={handleUpdate}
-        />
+        <div>
+          <label style={{
+            display: 'block',
+            marginBottom: '8px',
+            fontSize: '13px',
+            fontWeight: '500',
+            color: '#a0a0a0',
+            letterSpacing: '0.3px'
+          }}>
+            End Time
+          </label>
+          <DateTimePicker
+            onChange={setEnd}
+            value={end}
+          />
+        </div>
       </div>
 
       <button
         onClick={handlePushToCalendar}
         style={{
-          backgroundColor: '#4CAF50',
-          color: 'white',
-          padding: '8px 16px',
+          background: '#ffffff',
+          color: '#1a1a1a',
+          padding: '12px 24px',
           border: 'none',
           borderRadius: '4px',
-          cursor: 'pointer'
+          cursor: 'pointer',
+          fontFamily: 'Jost, sans-serif',
+          fontSize: '14px',
+          fontWeight: '600',
+          transition: 'all 0.2s ease',
+          letterSpacing: '0.3px',
+          width: '100%'
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.background = '#f0f0f0';
+          e.target.style.transform = 'translateY(-1px)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.background = '#ffffff';
+          e.target.style.transform = 'translateY(0)';
         }}
       >
         Push to Calendar

@@ -25,23 +25,62 @@ function UploadArea({ onFileUpload }) {
     <div
       {...getRootProps()}
       style={{
-        border: '2px dashed #cccccc',
+        border: isDragActive ? '2px dashed #ffffff' : '2px dashed #404040',
         borderRadius: '4px',
-        padding: '20px',
+        padding: '60px 40px',
         textAlign: 'center',
         cursor: 'pointer',
-        backgroundColor: isDragActive ? '#f0f0f0' : 'white',
-        margin: '20px 0'
+        backgroundColor: isDragActive ? '#2d2d2d' : '#242424',
+        transition: 'all 0.2s ease'
       }}
     >
       <input {...getInputProps()} />
       {isDragActive ? (
-        <p>Drop the file here...</p>
+        <div>
+          <div style={{
+            fontSize: '48px',
+            marginBottom: '16px'
+          }}>
+            📥
+          </div>
+          <p style={{
+            fontSize: '16px',
+            fontWeight: '500',
+            color: '#ffffff',
+            margin: 0
+          }}>
+            Drop your image here
+          </p>
+        </div>
       ) : (
         <div>
-          <p>Drag and drop a file here, or click to select a file</p>
-          <p style={{ fontSize: '0.8em', color: '#666' }}>
-            Supported formats: JPG, PNG (max 5MB)
+          <div style={{
+            fontSize: '48px',
+            marginBottom: '16px'
+          }}>
+            📸
+          </div>
+          <p style={{
+            fontSize: '16px',
+            fontWeight: '500',
+            color: '#ffffff',
+            marginBottom: '8px'
+          }}>
+            Drag and drop an image here
+          </p>
+          <p style={{
+            fontSize: '14px',
+            color: '#a0a0a0',
+            marginBottom: '16px'
+          }}>
+            or click to browse
+          </p>
+          <p style={{
+            fontSize: '13px',
+            color: '#707070',
+            margin: 0
+          }}>
+            Supported: JPG, PNG • Max size: 5MB
           </p>
         </div>
       )}
